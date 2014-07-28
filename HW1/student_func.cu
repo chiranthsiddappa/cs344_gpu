@@ -52,6 +52,7 @@ void rgba_to_greyscale(const uchar4* const rgbaImage,
   //calculate a 1D offset
   int idx = threadIdx.x;
   int idy = threadIdx.y;
+  uchar4 = rgbaImage[idx * numCols + numCols];
 }
 
 void your_rgba_to_greyscale(const uchar4 * const h_rgbaImage, uchar4 * const d_rgbaImage,
