@@ -57,7 +57,7 @@ void rgba_to_greyscale(const uchar4* const rgbaImage,
   int bdimx = blockDim.x;
   int bdimy = blockDim.y;
   int pixX = (bidx * bdimx) + idx;
-  int pixY = (bidy * bdimy) + idx;
+  int pixY = (bidy * bdimy) + idy;
   uchar4 = rgbaImage[pixX * numCols + pixY];
   float channelSum = 0.299f * rgba.x + 0.587f * rgba.y + 0.114f * rgba.z;
   greyImage[pixX * numCols + pixY] = channelSum;
