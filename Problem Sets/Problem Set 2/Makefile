@@ -6,7 +6,7 @@ NVCC=nvcc
 ###################################
 
 OPENCV_LIBPATH=/usr/local/lib
-OPENCV_INCLUDEPATH=/usr/local/include/opencv2
+OPENCV_INCLUDEPATH=/usr/local/include/opencv
 
 ###################################################
 # On Macs the default install locations are below #
@@ -15,7 +15,7 @@ OPENCV_INCLUDEPATH=/usr/local/include/opencv2
 #OPENCV_LIBPATH=/usr/local/lib
 #OPENCV_INCLUDEPATH=/usr/local/include
 
-OPENCV_LIBS=-lopencv_core -lopencv_imgproc -lopencv_highgui
+OPENCV_LIBS=-lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs
 CUDA_INCLUDEPATH=/usr/local/cuda/include
 
 ######################################################
@@ -30,7 +30,7 @@ NVCC_OPTS=-O3 -arch=sm_20 -Xcompiler -Wall -Xcompiler -Wextra -m64
 GCC_OPTS=-O3 -Wall -Wextra -m64
 
 student: main.o student_func.o compare.o reference_calc.o Makefile
-	$(NVCC) -o HW2 main.o student_func.o compare.o reference_calc.o -L $(OPENCV_LIBPATH) $(OPENCV_LIBS) $(NVCC_OPTS)
+	$(NVCC) -o HW2 main.o student_func.o compare.o reference_calc.o -I ${OPENCV_INCLUDEPATH} -L $(OPENCV_LIBPATH) $(OPENCV_LIBS) $(NVCC_OPTS)
 
 main.o: main.cpp timer.h utils.h HW2.cpp
 	g++ -c main.cpp $(GCC_OPTS) -I $(OPENCV_INCLUDEPATH) -I $(CUDA_INCLUDEPATH)
